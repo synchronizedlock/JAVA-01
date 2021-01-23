@@ -1,9 +1,9 @@
 #### nio & netty 总结
 ##### socket
 + 模型图  
-  ![socket.png](https://upload-images.jianshu.io/upload_images/17638038-a583cac1a8399c0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+  ![socket.png](/pics/socket.png)
 + 用户空间&内核空间数据交互
-  ![user&kernel.png](https://upload-images.jianshu.io/upload_images/17638038-d0127114f299c548.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+  ![user&kernel.png](/pics/user&kernel.png)
 #### 五种IO模型
 + 同步阻塞
    - 阻塞IO：线程在等待内核准备数据时阻塞
@@ -15,7 +15,7 @@
    - 异步IO：内核复制好再通知线程来取
 #### netty 概览
 + 架构概览
-  ![netty_overview.png](https://upload-images.jianshu.io/upload_images/17638038-aab4750499f15430.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+  ![netty_overview.png](/pics/netty_overview.png)
 + 框架特点
    - 异步
    - 事件驱动
