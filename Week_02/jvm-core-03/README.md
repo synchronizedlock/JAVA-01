@@ -2,7 +2,7 @@
 - - -
 ##### Java对象内存结构 
 + 结构图 
-![jvm_object.png](pics/GC_relation.png)
+![jvm_object.png](pics/jvm_object.png)
 + 对象头和对象引用  
 在64位 JVM 中，对象头占据的空间是 12byte(=96bit=64+32)，但是以8字节对齐，所以一个空类的实例至少占用16字节。
 在32位 JVM 中，对象头占8个字节，以4的倍数对齐(32=4*8)。所以 new 出来很多简单对象，甚至是 new Object()，都会占用不少内容。
@@ -15,7 +15,7 @@ Long:一般占用24个字节(头部8+4+数据8=20字节，再对齐)，当然，
 - - -
 ##### GC对比
 + 不同分代GC搭配选择  
-![GC_relation.png](pics/jvm_object.png)
+![GC_relation.png](pics/GC_relation.png)
 + GC性能指标
    - 高分配速率(High Allocation Rate)  
 分配速率(Allocation rate)表示单位时间内分配的内存量。通常 使用 MB/sec作为单位。上一次垃圾收集之后，与下一次GC开始之前的年轻代使用量，两者的差值除以时间,就是分配速率。  
