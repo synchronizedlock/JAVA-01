@@ -147,7 +147,8 @@ public class DynamicRoutePlugin extends AbstractNamiPlugin {
 
     private String matchAppVersion(String appName, ServerHttpRequest request) {
         List<AppRuleDTO> rules = RouteRuleCache.getRules(appName);
-        rules.sort(Comparator.comparing(AppRuleDTO::getPriority).reversed());
+        // FIXIT: Comparator causing StackoverflowError.
+//        rules.sort(Comparator.comparing(AppRuleDTO::getPriority).reversed());
         for (AppRuleDTO rule : rules) {
             if (match(rule, request)) {
                 return rule.getVersion();
