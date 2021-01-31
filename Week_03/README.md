@@ -47,6 +47,7 @@ nacos:
 ```
 5. 在 nami-admin 后台添加路由规则配置
    ![route_rule.png](nami/tutorial_images/route_rule.png)
+   意为 header 中的 env=gray 时，使用版本为 gray_1.0的服务
 6. 启动 nami-server
 7. 配置 postman 请求测试路由
 ```
