@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NamiExampleException {
+public class NamiExampleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NamiExampleException.class, args);
+        SpringApplication.run(NamiExampleApplication.class, args);
     }
 }
