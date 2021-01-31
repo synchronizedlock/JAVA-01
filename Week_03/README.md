@@ -15,9 +15,9 @@ admin/1234
 ```
 nami:
   http:
-    app-name: order
+    app-name: nami
     version: gray_1.0
-    context-path: /order
+    context-path: /nami
     port: 8081
     admin-url: 127.0.0.1:9001
  
@@ -32,9 +32,9 @@ nacos:
 ```
 ship:
   http:
-    app-name: order
+    app-name: nami
     version: prod_1.0
-    context-path: /order
+    context-path: /nami
     port: 8082
     admin-url: 127.0.0.1:9001
  
@@ -46,7 +46,7 @@ nacos:
     server-addr: 127.0.0.1:8848
 ```
 5. 在 nami-admin 后台添加路由规则配置
-   ![config_gray.png](nami/tutorial_images/config_rule.png)
+   ![route_rule.png](nami/tutorial_images/route_rule.png)
 6. 启动 nami-server
 7. 配置 postman 请求测试路由
 ```
