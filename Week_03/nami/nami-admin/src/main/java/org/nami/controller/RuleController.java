@@ -29,9 +29,6 @@ public class RuleController {
 
     /**
      * add new route rule
-     *
-     * @param ruleDTO
-     * @return
      */
     @ResponseBody
     @PostMapping("")
