@@ -104,7 +104,7 @@ public class AutoRegisterListener implements ApplicationListener<ContextRefreshe
         unregisterAppDTO.setPort(properties.getPort());
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             OkhttpTools.doPost(url, unregisterAppDTO);
-            LOGGER.info("[{}:{}] unregister from ship-admin success!", unregisterAppDTO.getAppName(), unregisterAppDTO.getVersion());
+            LOGGER.info("[{}:{}] unregister from nami-admin success!", unregisterAppDTO.getAppName(), unregisterAppDTO.getVersion());
         }));
     }
 
@@ -129,11 +129,11 @@ public class AutoRegisterListener implements ApplicationListener<ContextRefreshe
             throw new NamiException(e.getErrCode(), e.getErrMsg());
         }
         LOGGER.info("register interface info to nacos success!");
-        // send register request to ship-admin
+        // send register request to nami-admin
         String url = "http://" + properties.getAdminUrl() + AdminConstants.REGISTER_PATH;
         RegisterAppDTO registerAppDTO = buildRegisterAppDTO(instance);
         OkhttpTools.doPost(url, registerAppDTO);
-        LOGGER.info("register to ship-admin success!");
+        LOGGER.info("register to nami-admin success!");
     }
 
     private RegisterAppDTO buildRegisterAppDTO(Instance instance) {

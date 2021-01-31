@@ -42,10 +42,10 @@ public class Result<T> implements Serializable {
         return result;
     }
 
-    public static <T> Result<T> error(NamiException shipException) {
+    public static <T> Result<T> error(NamiException namiException) {
         Result<T> result = new Result();
-        result.setCode(shipException.getCode());
-        result.setMessage(shipException.getMessage());
+        result.setCode(namiException.getCode());
+        result.setMessage(namiException.getMessage());
         return result;
     }
 

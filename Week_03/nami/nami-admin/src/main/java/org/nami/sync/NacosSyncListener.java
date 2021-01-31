@@ -30,9 +30,11 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author: Ship
- * @Description:
- * @Date: Created in 2020/12/30
+ * NacosSyncListener
+ *
+ * @author Easley
+ * @date 2021/1/31
+ * @since 1.0
  */
 @Configuration
 public class NacosSyncListener implements ApplicationListener<ContextRefreshedEvent> {

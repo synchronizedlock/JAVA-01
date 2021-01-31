@@ -4,7 +4,7 @@ package org.nami.plugin;
 import org.nami.config.ServerConfigProperties;
 
 /**
- * AbstractShipPlugin
+ * AbstractNamiPlugin
  *
  * @author Easley
  * @date 2021/1/31

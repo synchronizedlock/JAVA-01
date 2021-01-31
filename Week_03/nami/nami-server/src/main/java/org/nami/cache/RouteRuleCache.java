@@ -58,6 +58,6 @@ public class RouteRuleCache {
      */
     public static List<AppRuleDTO> getRules(String appName) {
         return Optional.ofNullable(ROUTE_RULE_MAP.get(appName))
-                .orElseThrow(() -> new NamiException("please config route rule in ship-admin first!"));
+                .orElseThrow(() -> new NamiException("please config route rule in nami-admin first!"));
     }
 }

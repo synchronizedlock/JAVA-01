@@ -1,7 +1,7 @@
 nami:
   http:
     app-name: order
-    version: gray_1.0
+    version: prod_1.0
     context-path: /order
     port: 8082
     admin-url: 127.0.0.1:9001

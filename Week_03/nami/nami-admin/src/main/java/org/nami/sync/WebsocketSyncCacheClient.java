@@ -91,7 +91,7 @@ public class WebsocketSyncCacheClient {
 
     public <T> void send(T t) {
         while (!client.getReadyState().equals(ReadyState.OPEN)) {
-            throw new NamiException("Please check if the ship-server is started！");
+            throw new NamiException("Please check if the nami-server is started！");
         }
         client.send(gson.toJson(t));
     }

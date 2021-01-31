@@ -39,17 +39,15 @@ public class PluginChain extends AbstractNamiPlugin {
 
     /**
      * add enabled plugin to chain
-     *
-     * @param shipPlugin
      */
-    public void addPlugin(NamiPlugin shipPlugin) {
+    public void addPlugin(NamiPlugin namiPlugin) {
         if (plugins == null) {
             plugins = new ArrayList<>();
         }
-        if (!PluginCache.isEnabled(appName, shipPlugin.name())) {
+        if (!PluginCache.isEnabled(appName, namiPlugin.name())) {
             return;
         }
-        plugins.add(shipPlugin);
+        plugins.add(namiPlugin);
         // order by the plugin's order
         plugins.sort(Comparator.comparing(NamiPlugin::order));
     }
