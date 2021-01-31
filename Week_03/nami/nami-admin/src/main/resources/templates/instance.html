@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Ship Admin</title>
+    <title>Nami Admin</title>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
@@ -96,7 +96,7 @@
                 'Content-Type': 'application/json'
             },
             success: function (data) {
-                if (data.code == 200) {
+                if (data.code === 200) {
                     layer.msg("更新权重成功");
                     location.reload();
                 } else {
@@ -111,5 +111,5 @@
 </script>
 </body>
 </html>
-      
+
 
