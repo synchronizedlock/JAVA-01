@@ -1,4 +1,8 @@
 #### Nami网关
+##### 实现的功能
+  + 负载均衡
+  + 插件链
+  + 动态路由（配置灰度之类）
 ##### how to use nami
 1. 在 localhost mysql 执行 nami.sql
 2. 本地启动 nacos
@@ -60,3 +64,19 @@ body：
 }
 正常会返回body的内容
 ```
+##### 已知问题
+1. 配置两条header相同的规则，可能导致路由失败（match app version error）
+```
+假设两条路由规则：
+env=gray
+env=prod
+如果先新建的env=gray的规则，那么它拿到的就是env=gray的规则，
+这时header设置env=prod会 match app version error。
+---------------------------------------------------
+发生原因：
+在用Comparator拿priority字段对rule对象排序时，StackOverflow了
+一时也没搞清楚怎么会这样，只好先注释了，写了一晚上脑子有点不太好使了，
+之后再改吧。如果规则配的header条件不一样，或者用了其他规则一般没问题。
+默认用的Round的负载均衡，也可以选Random或者Weight。
+```
+2. 刚才还记得，突然想不起来了... 睡觉睡觉
