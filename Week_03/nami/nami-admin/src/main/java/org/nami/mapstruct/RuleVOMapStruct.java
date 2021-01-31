@@ -22,8 +22,8 @@ public interface RuleVOMapStruct {
     RuleVOMapStruct INSTANCE = Mappers.getMapper(RuleVOMapStruct.class);
 
     @Mappings({
-            @Mapping(target = "createTime", expression = "java(cn.sp.utils.DateUtils.formatToYYYYMMDDHHmmss(rule.getCreateTime()))"),
-            @Mapping(target = "updateTime", expression = "java(cn.sp.utils.DateUtils.formatToYYYYMMDDHHmmss(rule.getUpdateTime()))")
+            @Mapping(target = "createTime", expression = "java(org.nami.utils.DateUtils.formatToYYYYMMDDHHmmss(rule.getCreateTime()))"),
+            @Mapping(target = "updateTime", expression = "java(org.nami.utils.DateUtils.formatToYYYYMMDDHHmmss(rule.getUpdateTime()))")
     })
     RuleVO mapToVO(RouteRule rule);
 

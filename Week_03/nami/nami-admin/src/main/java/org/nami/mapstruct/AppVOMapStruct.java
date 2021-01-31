@@ -22,8 +22,8 @@ public interface AppVOMapStruct {
     AppVOMapStruct INSTANCE = Mappers.getMapper(AppVOMapStruct.class);
 
     @Mappings({
-            @Mapping(target = "createTime", expression = "java(cn.sp.utils.DateUtils.formatToYYYYMMDDHHmmss(app.getCreateTime()))"),
-            @Mapping(target = "updateTime", expression = "java(cn.sp.utils.DateUtils.formatToYYYYMMDDHHmmss(app.getUpdateTime()))")
+            @Mapping(target = "createTime", expression = "java(org.nami.utils.DateUtils.formatToYYYYMMDDHHmmss(app.getCreateTime()))"),
+            @Mapping(target = "updateTime", expression = "java(org.nami.utils.DateUtils.formatToYYYYMMDDHHmmss(app.getUpdateTime()))")
     })
     AppVO mapToVO(App app);
 
