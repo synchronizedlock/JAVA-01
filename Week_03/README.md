@@ -50,7 +50,7 @@ nacos:
 6. 启动 nami-server
 7. 配置 postman 请求测试路由
 ```
-请求 url：http://localhost:9000/order/user/add
+请求 url：http://localhost:9000/nami/user/add
 header 添加：env=grey
 body：
 {
