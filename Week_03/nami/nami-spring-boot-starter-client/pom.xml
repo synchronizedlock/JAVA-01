@@ -13,11 +13,6 @@
     <version>1.0</version>
     <name>nami-spring-boot-starter-client</name>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.nami</groupId>
@@ -57,19 +52,6 @@
             <version>0.2.2</version>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <!-- Import dependency management from Spring Boot -->
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>

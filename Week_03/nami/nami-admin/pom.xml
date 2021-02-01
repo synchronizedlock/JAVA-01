@@ -13,12 +13,6 @@
     <version>1.0</version>
     <name>nami-admin</name>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <druid.version>1.1.21</druid.version>
-        <mapstruct.version>1.4.1.Final</mapstruct.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.nami</groupId>

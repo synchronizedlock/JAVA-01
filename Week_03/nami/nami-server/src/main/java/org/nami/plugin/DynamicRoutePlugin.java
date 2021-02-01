@@ -85,17 +85,15 @@ public class DynamicRoutePlugin extends AbstractNamiPlugin {
         }
         // nio->callback->nio
         return reqHeadersSpec.exchange().timeout(Duration.ofMillis(properties.getTimeOutMillis()))
-                .onErrorResume(ex -> {
-                    return Mono.defer(() -> {
-                        String errorResultJson = "";
-                        if (ex instanceof TimeoutException) {
-                            errorResultJson = "{\"code\":5001,\"message\":\"network timeout\"}";
-                        } else {
-                            errorResultJson = "{\"code\":5000,\"message\":\"system error\"}";
-                        }
-                        return NamiResponseUtils.doResponse(exchange, errorResultJson);
-                    }).then(Mono.empty());
-                }).flatMap(backendResponse -> {
+                .onErrorResume(ex -> Mono.defer(() -> {
+                    String errorResultJson = "";
+                    if (ex instanceof TimeoutException) {
+                        errorResultJson = "{\"code\":5001,\"message\":\"network timeout\"}";
+                    } else {
+                        errorResultJson = "{\"code\":5000,\"message\":\"system error\"}";
+                    }
+                    return NamiResponseUtils.doResponse(exchange, errorResultJson);
+                }).then(Mono.empty())).flatMap(backendResponse -> {
                     response.setStatusCode(backendResponse.statusCode());
                     response.getHeaders().putAll(backendResponse.headers().asHttpHeaders());
                     return response.writeWith(backendResponse.bodyToFlux(DataBuffer.class));
