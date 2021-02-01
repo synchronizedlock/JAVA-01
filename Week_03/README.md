@@ -53,6 +53,11 @@ nacos:
    ![route_rule.png](nami/tutorial_images/route_rule.png)
    意为 header 中的 env=gray 时，使用版本为 gray_1.0的服务
 6. 启动 nami-server
+   + 需等待 nami-server 控制台打印出同步过来的路由规则列表，
+   方可执行测试，大概需要8-10秒的时间
+   + 这些配置由 nami-admin 通过 websocket 推送过来，存入本地缓存起来 
+   + 服务实例的列表通过 nacos 获取，然后根据配置的负载均衡策略选择实例发送请求
+   ```
 7. 配置 postman 请求测试路由
 ```
 请求 url：http://localhost:9000/nami/user/add
