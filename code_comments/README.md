@@ -6,6 +6,7 @@
 + week03
   ![week03.png](week03.png)
 + week04
+  ![week04.png](week04.png)
 + week05
 + week06
 + week07
