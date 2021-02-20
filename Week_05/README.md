@@ -2,7 +2,7 @@
 ##### 周三作业
 + homework-01
 ```
-1(选做)使 Java 里的动态代理，实现一个简单的 AOP。
+1.(选做)使 Java 里的动态代理，实现一个简单的 AOP。
   /src/test/java/
   JdkProxyTest
   CglibProxyTest
