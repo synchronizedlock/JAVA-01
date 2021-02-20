@@ -13,4 +13,8 @@
     <artifactId>week-05</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>homework-01</module>
+        <module>homework-02</module>
+    </modules>
 </project>

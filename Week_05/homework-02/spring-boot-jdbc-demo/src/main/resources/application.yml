@@ -1,0 +1,41 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /
+  tomcat:
+    max-swallow-size: -1
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: application/javascript,application/json,application/xml,text/xml,text/plain,text/css,image/*
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: $xor2020
+    url: jdbc:mysql://106.55.60.191:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=true&failOverReadOnly=false&autoReconnect=true&autoCommit=true
+    type: com.zaxxer.hikari.HikariDataSource
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  jackson:
+    date-format: yy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mvc:
+    static-path-pattern: /**
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    servlet:
+      content-type: text/html
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+
+

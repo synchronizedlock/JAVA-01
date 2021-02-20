@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="org.easley.spring.*" />
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <bean id="alice" class="org.easley.spring.beans.MoeGirl">
+        <property name="name" value="Alice"/>
+        <property name="weChat" value="alice1997"/>
+        <property name="intimacyThreshold" value="120"/>
+    </bean>
+    <bean id="fischl" class="org.easley.spring.beans.MoeGirl">
+        <property name="name" value="Fischl"/>
+        <property name="weChat" value="fischl1998"/>
+        <property name="intimacyThreshold" value="80"/>
+    </bean>
+    <bean id="rin" class="org.easley.spring.beans.MoeGirl">
+        <property name="name" value="Rin"/>
+        <property name="weChat" value="rin1996"/>
+        <property name="intimacyThreshold" value="150"/>
+    </bean>
+
+    <bean id="producer" class="org.easley.spring.beans.IdolGroupProducer">
+        <property name="name" value="Easley"/>
+    </bean>
+
+    <bean id="gamingGirls" class="org.easley.spring.beans.IdolGroup">
+        <property name="name" value="GamingGirls"/>
+        <property name="producer" ref="producer"/>
+        <property name="members">
+            <list>
+                <ref bean="alice"/>
+                <ref bean="fischl"/>
+                <ref bean="rin"/>
+                <!-- XML引用JavaConfig配置的bean -->
+                <ref bean="haruka"/>
+            </list>
+        </property>
+    </bean>
+</beans>

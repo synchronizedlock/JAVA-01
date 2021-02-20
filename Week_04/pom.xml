@@ -13,4 +13,7 @@
     <artifactId>week-04</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>thread-solution</module>
+    </modules>
 </project>
