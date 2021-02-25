@@ -10,7 +10,7 @@
   /src/main/resources/applicationContext.xml
   /src/main/java/org/easley/spring/config/BeanConfig
 3.(选做)实现一个 Spring XML 自定义配置，配置一组 Bean
-  参见2及，/src/test/java/SpringBeanWireTest   
+  参见2及，/src/test/java/SpringBeanWireTest     
 ```
 ##### 周日作业
 + homework-02
@@ -23,4 +23,27 @@
   - 使用事务，PrepareStatement 方式，批处理方式，改进上述操作
   - 配置 Hikari 连接池，改进上述操作 
   参见 spring-boot-jdbc-demo，测试用例：JdbcTest（使用了线上数据库，可以直接运行）
+```
+##### 超级挑战
++ 尝试使用ByteBuddy与Instrument实现一个简单JavaAgent实现无侵入下的AOP
+```
+代理工程：method-profiler-agent
+测试工程：method-profiler-agent-demo
+
+IDEA代理配置，目录请自行替换为本地编译的method-profiler-agent-1.0.jar位置
+IDEA VM OPTIONS:
+-javaagent:/Users/easley_ray/my_repo/JAVA-01/Week_05/method-profiler-agent/target/method-profiler-agent-1.0.jar
+
+控制台运行结果输出：
+>>> Method profiler agent start.
+>>> ----------------------------
+唱
+>>> private void org.easley.demo.Kunkun.sing() throws java.lang.InterruptedException: took 10ms
+跳
+>>> private void org.easley.demo.Kunkun.jump() throws java.lang.InterruptedException: took 24ms
+rap
+>>> private void org.easley.demo.Kunkun.rap() throws java.lang.InterruptedException: took 33ms
+篮球
+>>> private void org.easley.demo.Kunkun.basketball() throws java.lang.InterruptedException: took 75ms
+>>> public static void org.easley.demo.Kunkun.main(java.lang.String[]) throws java.lang.InterruptedException: took 151ms
 ```

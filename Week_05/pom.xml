@@ -16,5 +16,7 @@
     <modules>
         <module>homework-01</module>
         <module>homework-02</module>
+        <module>method-profiler-agent</module>
+        <module>method-profiler-agent-demo</module>
     </modules>
 </project>
