@@ -12,5 +12,8 @@
 
     <artifactId>week-06</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>mall-mod-customer</module>
+    </modules>
 
 </project>
