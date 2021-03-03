@@ -1,5 +1,5 @@
 #### Week06
-+ 必做）基于电商交易场景（用户、商品、订单），设计一套简单的表结构，提交DDL的SQL文件到Github（后面2周的作业依然要是用到这个表结构）
++ （必做）基于电商交易场景（用户、商品、订单），设计一套简单的表结构，提交DDL的SQL文件到Github（后面2周的作业依然要是用到这个表结构）
 ```sql
 create table `mall_customer`
 (
@@ -64,3 +64,12 @@ create table `mall_order_goods`
 ) engine=innodb default charset=utf8mb4 comment '订单-商品 联系表';
 
 ```
++ 100万条插入10s内 
+```
+jdbc url里附带rewriteBatchedStatements=true这个条件即可，
+以mac的IO能力，完全ok，普通的笔记本或配置差一些的linux服务器
+应该是不行的。这点帮其他同学验证过了，实在懒得写代码了。节约的时间
+放在week-07的作业上去完成类似@DS的多数据源自动切换注解，及一个
+简单的sharding。
+```
+
