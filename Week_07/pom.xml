@@ -12,5 +12,8 @@
 
     <artifactId>week-07</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>simple-rw-separate-dynamic-ds</module>
+    </modules>
 
 </project>

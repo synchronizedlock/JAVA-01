@@ -1,0 +1,27 @@
+server:
+  port: 9001
+
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    servlet:
+      content-type: text/html
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+
+dynamic:
+  datasource:
+    master:
+      url: jdbc:mysql://127.0.0.1:3306/mall?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&rewriteBatchedStatements=true
+      username: root
+      password: 123456
+    slave:
+      url: jdbc:mysql://127.0.0.1:3306/mall_slave?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&rewriteBatchedStatements=true
+      username: root
+      password: 123456
+
+
