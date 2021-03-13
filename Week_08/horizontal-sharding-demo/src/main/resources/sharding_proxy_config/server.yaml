@@ -1,0 +1,7 @@
+authentication:
+  users:
+    root:
+      password: 123456
+    admin:
+      password: 123456
+      authorizedSchemas: mall

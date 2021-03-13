@@ -1,0 +1,57 @@
+schemaName: mall
+
+dataSourceCommon:
+  username: root
+  password: 123456
+  connectionTimeoutMilliseconds: 30000
+  idleTimeoutMilliseconds: 60000
+  maxLifetimeMilliseconds: 1800000
+  maxPoolSize: 50
+  minPoolSize: 1
+  maintenanceIntervalMilliseconds: 30000
+
+dataSources:
+  mall_0:
+    url: jdbc:mysql://127.0.0.1:3306/mall_0?serverTimezone=UTC&useSSL=false
+  mall_1:
+    url: jdbc:mysql://127.0.0.1:3306/mall_1?serverTimezone=UTC&useSSL=false
+
+rules:
+  - !SHARDING
+    tables:
+      mall_order:
+        actualDataNodes: mall_${0..1}.mall_order_${0..15}
+        tableStrategy:
+          standard:
+            shardingColumn: id
+            shardingAlgorithmName: id_mod_16
+        keyGenerateStrategy:
+          column: id
+          keyGeneratorName: snowflake
+    bindingTables:
+      - mall_order
+    defaultDatabaseStrategy:
+      standard:
+        shardingColumn: customer_id
+        shardingAlgorithmName: customer_id_mod_2
+    defaultTableStrategy:
+      none:
+
+    shardingAlgorithms:
+      id_mod_16:
+        type: INLINE
+        props:
+          algorithm-expression: mall_order_${id % 16}
+      customer_id_mod_2:
+        type: INLINE
+        props:
+          algorithm-expression: mall_${customer_id % 2}
+
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
+        props:
+          worker-id: 123
+
+props:
+  sql-show: true

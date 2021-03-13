@@ -12,5 +12,9 @@
 
     <artifactId>week-08</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>horizontal-sharding-demo</module>
+        <module>atomikos-xa-demo</module>
+    </modules>
 
 </project>
