@@ -145,13 +145,98 @@
 ##### 并发编程
 ![并发知识点.png](pics/并发知识点.png)
 ##### Spring和ORM等框架
+- - -   
+###### Spring IOC循环依赖
+![循环依赖时序图.png](pics/循环依赖时序图.png)
+- - -  
+###### Spring MVC
+![spring_mvc.png](pics/spring_mvc.png)
++ 过滤器(Filter):对Request请求起到过滤的作用，作用在Servlet之前，如果配置为/*可以对所 有的资源访问(servlet、js/css静态资源等)进行过滤处理
++ 监听器(Listener):实现了javax.servlet.ServletContextListener 接口的服务器端组件，它随 Web应用的启动而启动，只初始化一次，然后会一直运行监视，随Web应用的停止而销毁
+   - 作用一:做一些初始化工作，web应用中spring容器启动ContextLoaderListener
+   - 作用二:监听web中的特定事件，比如HttpSession,ServletRequest的创建和销毁;变量的创建、 销毁和修改等。可以在某些动作前后增加处理，实现监控，比如统计在线人数，利用 HttpSessionListener等
++ 拦截器(Interceptor):是SpringMVC、Struts等表现层框架自己的，不会拦截 jsp/html/css/image的访问等，只会拦截访问的控制器方法(Handler)。 从配置的⻆度也能够总结发现:servlet、filter、listener是配置在web.xml中的，而interceptor是 配置在表现层框架自己的配置文件中的 在Handler业务逻辑执行之前拦截一次 在Handler逻辑执行完毕但未跳转⻚面之前拦截一次 在跳转⻚面之后拦截一次
++ FlashMap 用于重定向时的参数传递，比如在处理用户订单时候，为了避免重复提交，可以处理完 post请求之后重定向到一个get请求，这个get请求可以用来显示订单详情之类的信息。这样做虽然 可以规避用户重新提交订单的问题，但是在这个⻚面上要显示订单的信息，这些数据从哪里来获得 呢?因为重定向时么有传递参数这一功能的，如果不想把参数写进URL(不推荐)，那么就可以通 过FlashMap来传递。只需要在重定向之前将要传递的数据写入请求(可以通过 ServletRequestAttributes.getRequest()方法获得)的属性OUTPUT_FLASH_MAP_ATTRIBUTE 中，这样在重定向之后的Handler中Spring就会自动将其设置到Model中，在显示订单信息的⻚面 上就可以直接从Model中获取数据。FlashMapManager 就是用来管理 FlashMap 的
+- - -  
+###### Spring JPA
++ 一个符合SpringDataJpa要求的Dao层接口是需要继承JpaRepository和JpaSpecificationExecutor
++ JpaRepository<操作的实体类类型,主键类型> 封装了基本的CRUD操作
++ JpaSpecificationExecutor<操作的实体类类型> 封装了复杂的查询(分⻚、排序等)
++ 使用原生sql语句查询，需要将nativeQuery属性设置为true，默认为false(jpql)
++ 方法命名规则查询
+   - public List findByNameLikeAndAddress(String name,String address);
+   - 按照name模糊查询(like), 方法名以findBy开头-属性名(首字母大写)
+   - 查询方式(模糊查询、等价查询), 如果不写查询方式，默认等价查询
++ 动态条件封装：Specification specification = new Specification();
+- - -  
+###### SpringBoot
++ 如何实现自动装配：  
+  参见：![如何实现自动装配](https://www.cnblogs.com/zhoading/p/12194960.html)
 ##### MySQL数据库和SQL
-参见：![性能与sql优化.xmind](xmind/性能与SQL优化.xmind)
++ MVCC详解：
+  参见：![MVCC详解](https://blog.csdn.net/SnailMann/article/details/94724197)
++ 思维导图：  
+  参见：![性能与sql优化.xmind](xmind/性能与SQL优化.xmind)
 ##### 分库分表
-参见：![性能与sql优化.xmind](xmind/性能与SQL优化.xmind)
++ 思维导图：  
+  参见：![性能与sql优化.xmind](xmind/性能与SQL优化.xmind)
 ##### RPC和微服务
++ RPC原理
+![rpc原理.png](pics/rpc原理.png)  
+   - 本地代理存根: Stub
+   - 本地序列化反序列化
+   - 网络通信
+   - 远程序列化反序列化
+   - 远程服务存根: Skeleton
+   - 调用实际业务服务
+   - 原路返回服务结果
+   - 返回给本地调用方
++ 常见RPC技术
+    - Corba/RMI/.NET Remoting
+    - JSON RPC, XML RPC，WebService(Axis2, CXF) 
+    - Hessian, Thrift, Protocol Buffer, gRPC
++ Dubbo
+   - Dubbo六大核心能力：![Dubbo核心能力.png](pics/Dubbo核心能力.png)
+   - Dubbo架构：![Dubbo架构.png](pics/Dubbo架构.png) 
+      + config 配置层:对外配置接口，以 ServiceConfig, ReferenceConfig 为中心，可以直接初始 化配置类，也可以通过 spring 解析配置生成配置类
+      + proxy 服务代理层:服务接口透明代理，生成服务的客户端 Stub 和服务器端 Skeleton, 以 ServiceProxy 为中心，扩展接口为 ProxyFactory
+      + registry 注册中心层:封装服务地址的注册与发现，以服务 URL 为中心，扩展接口为 RegistryFactory, Registry, RegistryService
+      + cluster 路由层:封装多个提供者的路由及负载均衡，并桥接注册中心，以 Invoker 为中心， 扩展接口为 Cluster, Directory, Router, LoadBalance
+      + monitor 监控层:RPC 调用次数和调用时间监控，以 Statistics 为中心，扩展接口为 MonitorFactory, Monitor, MonitorService 
+      + protocol 远程调用层:封装 RPC 调用，以 Invocation, Result 为中心，扩展接口为 Protocol, Invoker, Exporter
+      + exchange 信息交换层:封装请求响应模式，同步转异步，以 Request, Response 为中心， 扩展接口为 Exchanger, ExchangeChannel, ExchangeClient, ExchangeServer
+      + transport 网络传输层:抽象 mina 和 netty 为统一接口，以 Message 为中心，扩展接口为 Channel, Transporter, Client, Server, Codec
+      + serialize 数据序列化层:可复用的一些工具，扩展接口为 Serialization, ObjectInput, ObjectOutput, ThreadPool
+   - Dubbo框架设计：![Dubbo框架设计.png](pics/Dubbo框架设计.png)
+   - 泛化引用（GenericService）
+      + 当我们知道接口、方法和参数，不用存根方式，而是用反射方式调用任何服务
+         - ```
+           <dubbo:reference id="barService" interface="com.foo.BarService" generic="true" />
+           GenericService barService = (GenericService) applicationContext.getBean("barService");
+           Object result = barService.$invoke("sayHello", new String[] { "java.lang.String" }, new Object[] { "World" });
+           ```
+         - ```
+           ReferenceConfig<GenericService> reference = new ReferenceConfig<GenericService>(); reference.setInterface("com.xxx.XxxService");
+           reference.setVersion("1.0.0");
+           reference.setGeneric(true);
+           GenericService genericService = reference.get();
+           ```
+   - 隐式传参
+    > Context模式：RpcContext.getContext().setAttachment("index", "1");此参数可以传播到RPC调用的整个过程。
 ##### 分布式缓存
-参见：![性能与sql优化.xmind](xmind/性能与SQL优化.xmind)
++ 思维导图：  
+  参见：![性能与sql优化.xmind](xmind/性能与SQL优化.xmind)
 ##### 分布式消息队列
++ MQ的作用：
+   - 异步通信:异步通信，减少线程等待，特别是处理批量等大事务、耗时操作
+   - 系统解耦:系统不直接调用，降低依赖，特别是不在线也能保持通信最终完成
+   - 削峰平谷:压力大的时候，缓冲部分请求消息，类似于背压处理
+   - 可靠通信:提供多种消息模式、服务质量、顺序保障等
++ 主流MQ：
+   - ActiveMQ
+   - RabbitMQ
+   - RocketMQ
+   - Kafka
+   - pulsar 
 
 
