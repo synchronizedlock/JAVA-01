@@ -60,12 +60,17 @@
           清理年轻代，将一部分老年代区域（非百分百垃圾）也回收
         + FGC
           回收失败，退化为SerialGC
+- - -          
+###### 参考xmind
+> ![JVM.xmind](xmind/JVM.xmind)
 ##### NIO
+- - - 
 ###### socket
 + 模型图  
   ![socket.png](pics/socket.png)
 + 用户空间&内核空间数据交互
   ![user&kernel.png](pics/user&kernel.png)
+- - -   
 ###### 五种IO模型
 + 同步阻塞
     - 阻塞IO：线程在等待内核准备数据时阻塞
@@ -75,6 +80,7 @@
     - 信号驱动：内核给线程注册了一个reactor，内核准备好数据就发信号，reactor收到信号线程就来复制数据
 + 异步非阻塞
     - 异步IO：内核复制好再通知线程来取
+- - -     
 ###### netty 概览
 + 架构概览
   ![netty_overview.png](pics/netty_overview.png)
