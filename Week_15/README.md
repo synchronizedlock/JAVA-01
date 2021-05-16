@@ -237,6 +237,27 @@
    - RabbitMQ
    - RocketMQ
    - Kafka
+      + Kafka 是一种分布式的，基于发布 / 订阅的消息系统。主要设计目标如下:
+         - 以时间复杂度为 O(1) 的方式提供消息持久化能力，即使对 TB 级以上数据也能保证常数时间复杂度的访问性能
+         - 高吞吐率。即使在非常廉价的商用机器上也能做到单机支持每秒 100K 条以上消息的传输
+         - 支持 Kafka Server 间的消息分区，及分布式消费，同时保证每个 Partition 内的消息顺序传输。
+         - 同时支持离线数据处理和实时数据处理。
+         - Scale out:支持在线水平扩展。
+      + 基本概念：
+         - Broker:Kafka 集群包含一个或多个服务器，这种服务器被称为 broker。
+         - Topic:每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。 (物理上不同 Topic 的消息分开存储，逻辑上一个 Topic 的消息虽然保存于一个或 多个 broker 上，但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数 据存于何处)。
+         - Partition:Partition 是物理上的概念，每个 Topic 包含一个或多个 Partition。
+         - Producer:负责发布消息到 Kafka broker。
+         - Consumer:消息消费者，向 Kafka broker 读取消息的客户端。
+         - Consumer Group:每个 Consumer 属于一个特定的 Consumer Group(可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group)。
+      + 单机部署结构：![kafka单机.png](pics/kafka单机.png)
+      + 集群部署结构：![kafka集群.png](pics/kafka集群.png)   
+      + topic和partition：![kafka的topic和partition.png](pics/kafka的topic和partition.png)
+      + partition和replica：![kafka的partition和replica.png](pics/kafka的partition和replica.png)
+      + topic特性：
+         - 通过partition增加可扩展性
+         - 通过顺序写入达到高吞吐
+         - 多副本增加容错性
    - pulsar 
 
 
