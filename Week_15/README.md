@@ -259,5 +259,6 @@
          - 通过顺序写入达到高吞吐
          - 多副本增加容错性
    - pulsar 
-
+      + ![pulsar介绍_01.png](pics/pulsar介绍_01.png)
+      + ![pulsar介绍_02.png](pics/pulsar介绍_02.png)
 
