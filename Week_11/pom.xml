@@ -12,5 +12,8 @@
 
     <artifactId>week-11</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>redis-demo</module>
+    </modules>
 
 </project>

@@ -1,0 +1,21 @@
+server:
+  port: 8809
+
+spring:
+  application:
+    name: redis_study
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 5000 # 连接超时时间（毫秒）
+    #    management:
+    #      health:
+    #        redis:
+    #          enabled: false
+    lettuce:
+      pool:
+        max-idle: 15
+        max-active: 15
+        max-wait: 1000
