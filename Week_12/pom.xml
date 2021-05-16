@@ -12,5 +12,8 @@
 
     <artifactId>week-12</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>activemq-demo</module>
+    </modules>
 
 </project>
