@@ -1,0 +1,34 @@
+server:
+  port: 9001
+
+spring:
+  shardingsphere:
+    datasource:
+      names: mall_0,mall_1
+      mall_0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/mall_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: 123456
+      mall_1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/mall_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: 123456
+    sharding:
+      tables:
+        mall_order:
+          actual-data-nodes: mall_${0..1}.mall_order_${0..15}
+          database-strategy:
+            inline:
+              sharding-column: customer_id
+              algorithm-expression: mall_${customer_id%16}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: mall_order_${id%16}
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml

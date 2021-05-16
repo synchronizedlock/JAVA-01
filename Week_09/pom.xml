@@ -12,5 +12,8 @@
 
     <artifactId>week-09</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>dubbo-hmily-demo</module>
+    </modules>
 
 </project>
